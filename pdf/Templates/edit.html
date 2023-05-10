@@ -1,0 +1,10 @@
+{% extends "auth_app/header.html" %}
+
+{% block content %}
+  <h2>Editar Archivo</h2>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit">Guardar</button>
+  </form>
+{% endblock %}

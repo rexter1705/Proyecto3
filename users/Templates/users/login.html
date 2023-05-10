@@ -1,0 +1,24 @@
+{% extends "auth_app/header.html" %}
+{% block content %}
+    <div class="content-section">
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Iniciar sesión</legend>
+                    {{ form }}
+                </div>
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Inicio de sesión</button>
+            </div>
+        </form>
+        <div class="border-top pt-3">
+            <small class="text-muted">
+                Si no tienes cuenta entra aquí: <a class="ml-2" href="{% url 'register' %}">Registro</a>
+            </small><br>
+            <small class="text-muted">
+                <a href="{% url 'password_reset' %}">¿Olvidaste tu contraseña?</a>
+            </small>
+        </div>
+    </div>
+{% endblock content %}

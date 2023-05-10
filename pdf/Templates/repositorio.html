@@ -1,0 +1,24 @@
+{% extends "auth_app/header.html" %}
+{% load static %}
+{% load custom_tags %}
+
+<html>
+{% block content %}
+  {% autoescape off %}
+  <h1>Repositorio de archivos</h1>
+  {% if files %}
+    <ul>
+      {% for file in files %}
+        <li>
+          <a href="{{ file.file.url }}">{{ file.file.name }}</a>
+          <h5>{{ file.text | resaltar_texto | safe }}</h5>
+          <a href="{% url 'edit' file.id %}">Editar Archivo</a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No se ha subido ningún archivo todavía.</p>
+  {% endif %}
+  {% endautoescape %}
+{% endblock %}
+</html>

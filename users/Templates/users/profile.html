@@ -1,0 +1,54 @@
+{% extends "auth_app/header.html" %}
+{% block content %}
+<div class="content-section col-lg-12 col-md-12 col-sm-12 tutorial-style" style="min-height:65vh;">
+    <legend class="border-bottom mb-4">Perfil</legend>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="media">
+            <div class="media-body">
+                <h2 class="account-heading">{{ form.instance.username }}
+                    <small class="text-muted">({{ form.instance.status }})</small>
+                </h2>
+                <p class="text-secondary">{{ form.instance.first_name }} {{ form.instance.last_name }}</p>
+                <p class="text-secondary">{{ form.instance.cui }}</p>
+                <p class="text-secondary">{{ form.instance.email }}</p>
+                <p class="text-secondary">{{ form.instance.sex }}</p>
+                <p class="text-secondary">{{ form.instance.career }}</p>
+            </div>
+        </div>
+
+        {% if user.username == form.instance.username %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Editar perfil</legend>
+                <div class="form-row">
+                    <div class="form-group col-md-6 mb-0">
+                        {{ form.first_name  }}
+                    </div>
+                    <div class="form-group col-md-6 mb-0">
+                        {{ form.last_name }}
+                    </div>
+                    <div class="form-group col-md-6 mb-0">
+                        {{ form.sex }}
+                    </div>
+                    <div class="form-group col-md-6 mb-0">
+                        {{ form.career }}
+                </div> 
+                <div class="form-group col-md-6 mb-0">
+                    {{ form.cui }}
+            </div> 
+                {{ form.email  }}
+
+                <a href="{% url 'password_change' %}">Cambiar contraseña</a>
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Actualizar</button>
+            </div>
+        {% endif %}
+        {% if user.username == form.instance.username %}
+            <div class="form-group">
+                <a href="{% url 'repositorio' %}">Repositorio de Documentos</a>
+            </div>
+        {% endif %}
+    </form>
+</div>
+{% endblock content %}
